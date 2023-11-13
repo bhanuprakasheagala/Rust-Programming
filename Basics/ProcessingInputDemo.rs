@@ -1,7 +1,9 @@
 fn main(){
     println!("What is your name?");
     let input = read_string(); // User defined function
+    let clean_input = read_clean_string(); // same as read_string but trim white spaces
     println!("Your name is: {}", input);
+    println!("Your name is: {}", clean_input);
 }
 
 // read_string returns a String datatype. A String is a convenient wrapper around the `str` data type.
@@ -29,7 +31,22 @@ fn read_string() -> String {
     /*
         Finally the contents of input is returned at the end of the read_string function. Notice that there is no ; at the
         end of the input statement. Omitting the ; at the end of input tells Rust to return the content of that
-        variable as a result of the function. It is shorthand for return input; Which would essentially do the same.
+        variable as a result of the function. It is shorthand for `return input;` Which would essentially do the same.
     */
+    input
+}
+
+/*
+read_clean_string, that reads the input, cleans it with trim(), and then returns it.
+You need to call the to_string() method on the cleaned result to convert it to a String.
+*/
+
+fn read_clean_string() -> String {
+    let mut input = String::new();
+    std::io::stdin()
+        .read_line(&mut input)
+        .expect("can not read user input");
+    input = input.trim().to_string();
+
     input
 }
