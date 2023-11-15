@@ -17,6 +17,17 @@ impl Person {
             age,
         }
     }
+    /*
+    We can add methods in the same impl block. The only difference between the associated function
+    and a method is in the type signature. A method always takes &self as the first input parameter. 
+    */
+    fn print_person(&self) {
+        println!("Hello {} {}", self.first_name, self.last_name);
+        println!("You are {} years old", self.age);
+    }
+    /*
+    Note the use of self.first_name, self.last_name, self.age in the print method to access the fields of the Person.
+    */
 }
 
 fn main(){
@@ -29,7 +40,8 @@ fn main(){
 
     // We've added a new() function that takes three input parameters: first_name, last_name, age and returns a new Person object.
     let person = Person::new(first_name, last_name, age); // User defined associated function
-    print_person(&person);
+    //print_person(&person);
+    person.print_person();
 }
 fn read_string() -> String {
     let mut input = String::new(); // Builting associated function
@@ -49,8 +61,9 @@ fn read_number() -> u8 {
     let num: u8 = num.trim().parse().expect("\nNot a positive number!!\n");
     num
 }
-
-fn print_person(person: &Person) {
+/*
+fn print_person(person: &Person){
     println!("Hello {} {}", person.first_name, person.last_name);
-    println!("You are {} years old", person.age);
+    println!("Your Age: {}", person.age);
 }
+*/
