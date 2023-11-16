@@ -10,7 +10,24 @@ struct Person {
 
 // The `impl Person { }` block is used to define associated functions, or methods that belong to the Person type.
 impl Person {
+
     fn new(first_name: String, last_name: String, age: u8) -> Person {
+        Person {
+            first_name,
+            last_name,
+            age,
+        }
+    }
+
+    // Add another association function which reads input from user and constructs a new `Person`
+    fn new_from_input() -> Person {
+        println!("First name: ");
+        let first_name = read_string();
+        println!("Last name: ");
+        let last_name = read_string();
+        println!("Age: ");
+        let age = read_number();
+
         Person {
             first_name,
             last_name,
@@ -39,9 +56,13 @@ fn main(){
     let age = read_number();
 
     // We've added a new() function that takes three input parameters: first_name, last_name, age and returns a new Person object.
-    let person = Person::new(first_name, last_name, age); // User defined associated function
+    let person1 = Person::new(first_name, last_name, age); // User defined associated function
     //print_person(&person);
-    person.print_person();
+    person1.print_person();
+
+    // User Defined associated function
+    let person2 = Person::new_from_input();
+    person2.print_person(); //Or print_person(&person);
 }
 fn read_string() -> String {
     let mut input = String::new(); // Builting associated function
